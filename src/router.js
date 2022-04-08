@@ -53,6 +53,10 @@ export default new VueRouter({
   mode: 'hash',
   // 将菜单选项数据同步到路由中
   routes: [
+    {
+      path: '/',
+      redirect: '/discovery'
+    },
     ...menuRoutes
   ]
 })

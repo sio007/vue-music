@@ -15,6 +15,7 @@
 <script>
 import LayoutHeader from './header'
 import LayoutMenu from './menu'
+import { layoutCenterNames } from '@/router'
 export default {
   data () {
     return {}
@@ -22,6 +23,15 @@ export default {
   components: {
     LayoutHeader,
     LayoutMenu
+  },
+  computed: {
+    // 将page页面加上居中的css类名
+    routerViewCls () {
+      // 将需要居中的路由对应的模块循环，依次添加类名
+      return layoutCenterNames.find(name => name === this.$route.name)
+        ? 'router-view-center'
+        : ''
+    }
   }
 }
 </script>

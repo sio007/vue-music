@@ -24,9 +24,8 @@
       </div>
     </div>
     <div class="right">
-
+      <!-- 搜索框 -->
       <div class="search-wrap">
-        <!-- 搜索框 -->
         <Search />
       </div>
       <!-- 换肤按钮 -->
