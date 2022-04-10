@@ -4,7 +4,7 @@ import { confirm } from '@/base/confirm'
 import store from '@/store'
 
 // 设置axios请求的基准地址
-const BASE_URL = 'https://netease-music-api.fe-mm.com/'
+const BASE_URL = 'http://localhost:3000/'
 
 // 不带全局loading的axios请求实例
 export const requestWithoutLoading = createBaseInstance()

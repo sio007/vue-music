@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Input, Button, Popover, Carousel, CarouselItem, Loading, Dialog } from 'element-ui'
+import { Input, Button, Popover, Carousel, CarouselItem, Loading, Dialog, Pagination } from 'element-ui'
 
 import VueLazyload from 'vue-lazyload'
 import * as utils from './index'
@@ -30,6 +30,7 @@ export default {
     Vue.use(Popover)
     Vue.use(Carousel)
     Vue.use(CarouselItem)
+    Vue.use(Pagination)
     Vue.use(Loading)
     Vue.use(Dialog)
 

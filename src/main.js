@@ -1,8 +1,12 @@
 import Vue from 'vue'
+
 import App from './App.vue'
 import router from './router'
+
 import '@/style/index.scss'
-import store from './store'
+import '@/utils/rem'
+import '@/utils/axios'
+import store from './store/index'
 import global from './utils/global'
 
 Vue.config.productionTip = false
