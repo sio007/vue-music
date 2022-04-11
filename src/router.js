@@ -4,8 +4,10 @@ import VueRouter from 'vue-router'
 const Discovery = () => import(/* webpackChunkName: "Discovery" */ '@/page/discovery')
 const Playlists = () => import(/* webpackChunkName: "Playlists" */ '@/page/playlists')
 const Songs = () => import(/* webpackChunkName: "Songs" */ '@/page/songs')
-Vue.use(VueRouter)
 const Mvs = () => import(/* webpackChunkName: "Mvs" */ '@/page/mvs')
+
+
+
 // 内容需要居中的页面
 export const layoutCenterNames = ['discovery', 'playlists', 'songs', 'mvs']
 
@@ -48,6 +50,8 @@ export const menuRoutes = [
     }
   }
 ]
+
+Vue.use(VueRouter)
 
 export default new VueRouter({
   mode: 'hash',

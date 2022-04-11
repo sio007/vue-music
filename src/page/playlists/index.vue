@@ -18,6 +18,8 @@
 import { getPlaylists, getTopPlaylists } from '@/api'
 import PlaylistCard from '@/components/playlist-card'
 import TopPlaylistCard from '@/components/top-playlist-card'
+// getPageOffset用于切换分页时的偏移量
+// scrollInto是将页面动画滑动到顶端
 import { getPageOffset, scrollInto } from '@/utils'
 
 // 一页显示的歌单数量
