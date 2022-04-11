@@ -1,5 +1,16 @@
 import Vue from 'vue'
-import { Input, Button, Popover, Carousel, CarouselItem, Loading, Dialog, Pagination } from 'element-ui'
+import {
+  Input,
+  Dialog,
+  Button,
+  Loading,
+  Carousel,
+  CarouselItem,
+  Table,
+  TableColumn,
+  Popover,
+  Pagination
+} from 'element-ui'
 
 import VueLazyload from 'vue-lazyload'
 import * as utils from './index'
@@ -26,13 +37,15 @@ export default {
     Vue.prototype.$utils = utils
 
     Vue.use(Input)
-    Vue.use(Button)
-    Vue.use(Popover)
     Vue.use(Carousel)
     Vue.use(CarouselItem)
+    Vue.use(Table)
+    Vue.use(TableColumn)
+    Vue.use(Popover)
     Vue.use(Pagination)
     Vue.use(Loading)
     Vue.use(Dialog)
+    Vue.use(Button)
 
 
     Vue.use(VueLazyload, {

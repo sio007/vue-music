@@ -1,5 +1,5 @@
 <template>
-  <ul class="tab-wrap">
+  <ul :class="{[align]: true}" class="tab-wrap">
     <!-- tabs栏组件：有两种渲染方式 -->
     <!-- 1.tab栏选项点击后需要跳转链接（可称为路由模式） -->
     <!-- 2.tab栏选项点击后不需要跳转链接 -->
