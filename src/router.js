@@ -5,6 +5,7 @@ const Discovery = () => import(/* webpackChunkName: "Discovery" */ '@/page/disco
 const Playlists = () => import(/* webpackChunkName: "Playlists" */ '@/page/playlists')
 const Songs = () => import(/* webpackChunkName: "Songs" */ '@/page/songs')
 const Mvs = () => import(/* webpackChunkName: "Mvs" */ '@/page/mvs')
+const PlaylistDetail = () => import('@/page/playlist-detail')
 
 
 
@@ -60,6 +61,11 @@ export default new VueRouter({
     {
       path: '/',
       redirect: '/discovery'
+    },
+    {
+      path: '/playlist/:id',
+      name: 'playlist',
+      component: PlaylistDetail
     },
     ...menuRoutes
   ]
