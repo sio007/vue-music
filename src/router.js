@@ -6,7 +6,7 @@ const Playlists = () => import(/* webpackChunkName: "Playlists" */ '@/page/playl
 const Songs = () => import(/* webpackChunkName: "Songs" */ '@/page/songs')
 const Mvs = () => import(/* webpackChunkName: "Mvs" */ '@/page/mvs')
 const PlaylistDetail = () => import('@/page/playlist-detail')
-
+const Mv = () => import(/* webpackChunkName: "Mv" */ '@/page/mvdetail')
 
 
 // 内容需要居中的页面
@@ -66,6 +66,12 @@ export default new VueRouter({
       path: '/playlist/:id',
       name: 'playlist',
       component: PlaylistDetail
+    },
+    {
+      path: '/mv/:id',
+      name: 'mv',
+      component: Mv,
+      props: (route) => ({ id: +route.params.id })
     },
     ...menuRoutes
   ]

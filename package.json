@@ -36,6 +36,8 @@
     "sass-loader": "^7.1.0",
     "vue-cli-plugin-element": "^1.0.1",
     "vue-lazyload": "^1.3.3",
-    "vue-template-compiler": "^2.6.14"
+    "vue-meta": "^2.4.0",
+    "vue-template-compiler": "^2.6.14",
+    "xgplayer": "^2.2.0"
   }
 }

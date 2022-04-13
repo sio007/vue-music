@@ -25,9 +25,9 @@
       <Pagination :current-page.sync="currentPage" :page-size="PAGE_SIZE" :total="total" @current-change="onPageChange" class="pagination" />
     </template>
     <!-- 用于没有评论的时候显示 -->
-    <empty v-if="!loading && !shouldHotCommentShow && !shouldCommentShow">
+    <Empty v-if="!loading && !shouldHotCommentShow && !shouldCommentShow">
       还没有评论哦
-    </empty>
+    </Empty>
   </div>
 </template>
 
@@ -40,14 +40,10 @@ import {
 } from '@/api'
 import { getPageOffset, scrollInto } from '@/utils'
 import Comment from './comment'
-
-
-
 // 用于分辨 获取 歌曲、播放列表、mv 评论 的变量
 const SONG_TYPE = 'song'
 const PLAYLIST_TYPE = 'playlist'
 const MV_TYPE = 'mv'
-
 // 每一页评论的数量
 const PAGE_SIZE = 20
 export default {
@@ -103,7 +99,6 @@ export default {
         // 将关闭加载款
         this.loading = false
       })
-
       // 歌单的热评需要单独请求接口获取
       if (this.type === PLAYLIST_TYPE && this.currentPage === 1) {
         const { hotComments: exactHotComments = [] } = await getHotComment({
@@ -115,7 +110,6 @@ export default {
         // 如果不是歌单热评就将上面获取评论直接赋值
         this.hotComments = hotComments
       }
-
       // 将获取的 评论、评论条数 赋值
       this.comments = comments
       this.total = total
@@ -164,12 +158,10 @@ export default {
 <style lang="scss" scoped>
 .block {
   margin-bottom: 48px;
-
   .title {
     font-size: $font-size-lg;
     font-weight: $font-weight-bold;
     margin-bottom: 4px;
-
     .count {
       font-size: $font-size;
     }

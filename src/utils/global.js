@@ -13,6 +13,7 @@ import {
 } from 'element-ui'
 
 import VueLazyload from 'vue-lazyload'
+import Meta from 'vue-meta'
 import * as utils from './index'
 import { EMPTY_IMG } from './dom'
 
@@ -47,6 +48,7 @@ export default {
     Vue.use(Dialog)
     Vue.use(Button)
 
+    Vue.use(Meta)
 
     Vue.use(VueLazyload, {
       Loading: EMPTY_IMG,
