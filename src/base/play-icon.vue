@@ -29,7 +29,7 @@ export default {
 .play-icon-wrap {
   @include flex-center();
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(0, 0, 0, 0.5);
 
   .play-icon {
     color: $theme-color;

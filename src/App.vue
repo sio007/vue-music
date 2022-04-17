@@ -1,11 +1,19 @@
 <template>
   <div id="app">
-    <Layout msg="Welcome to Your Vue.js App" />
+    <Layout />
+    <Player />
+    <MiniPlayer />
+    <Playlist />
+    <ShareReader />
   </div>
 </template>
 
 <script>
 import Layout from '@/layout'
+import MiniPlayer from '@/components/mini-player'
+import Playlist from '@/components/playlist'
+import Player from '@/components/player'
+import ShareReader from '@/components/share-reader'
 
 export default {
   metaInfo () {
@@ -15,7 +23,11 @@ export default {
   },
   name: 'app',
   components: {
-    Layout
+    Layout,
+    MiniPlayer,
+    Playlist,
+    Player,
+    ShareReader
   }
 }
 </script>

@@ -3,23 +3,23 @@
     <div class="left">
       <!-- icon按钮组 -->
       <div class="buttons">
-        <div class="mac-button red">
+        <div class="mac-button red" @click="onClickLogo">
           <Icon :size="9" type="home" />
 
         </div>
-        <div class="mac-button yellow">
+        <div class="mac-button yellow" @click="exitFullscreen">
           <Icon :size="9" type="minus" />
         </div>
-        <div class="mac-button green">
+        <div class="mac-button green" @click="fullscreen">
           <Icon :size="9" type="fullscreen" />
         </div>
       </div>
       <!-- 缩起播放器(只在播放器页面显示，layout页面隐藏) -->
-      <div class="shrink-player">
+      <div class="shrink-player" @click="onClickDown" v-if="isPlayerShow">
         <Icon :backdrop="true" type="down" />
       </div>
       <!-- 路由记录器 -->
-      <div class="history">
+      <div class="history" v-show="!isPlayerShow">
         <RoutesHistory />
       </div>
     </div>
@@ -39,8 +39,33 @@
 import RoutesHistory from '@/components/routes-history'
 import Search from '@/components/search'
 import Theme from '@/components/theme'
+import { mapState, mapMutations } from '@/store/helper/music'
+import { requestFullScreen, exitFullscreen, isFullscreen } from '@/utils'
 
 export default {
+  methods: {
+    onClickLogo () {
+      this.$router.push('/discovery')
+    },
+    onClickDown () {
+      this.setPlayerShow(false)
+    },
+    fullscreen () {
+      requestFullScreen(document.documentElement)
+    },
+    exitFullscreen () {
+      if (isFullscreen()) {
+        exitFullscreen()
+      }
+    },
+    toggleFullscreen () {
+      this.isFullscreen = !this.isFullscreen
+    },
+    ...mapMutations(['setPlayerShow'])
+  },
+  computed: {
+    ...mapState(['isPlayerShow'])
+  },
   components: { RoutesHistory, Search, Theme }
 }
 </script>

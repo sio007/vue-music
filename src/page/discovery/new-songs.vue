@@ -4,13 +4,14 @@
     <div class="list-wrap">
       <!-- 将两个歌曲对象，循环渲染到模板中 -->
       <div :key="listIndex" class="list" v-for="(list, listIndex) in thunkedList">
-        <SongCard :key="item.id" :order="getSongOrder(listIndex, index)" class="song-card" v-bind="nomalizeSong(item)" v-for="(item,index) in list" />
+        <SongCard :key="item.id" :order="getSongOrder(listIndex, index)" @click.native="onClickSong(listIndex, index)" class="song-card" v-bind="nomalizeSong(item)" v-for="(item,index) in list" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapMutations } from '@/store/helper/music'
 import { getNewSongs } from '@/api'
 import SongCard from '@/components/song-card'
 import { createSong } from '@/utils'
@@ -57,7 +58,19 @@ export default {
         duration,
         mvId: mvid
       })
-    }
+    },
+    // 点击歌曲后
+    onClickSong (listIndex, index) {
+      // 这里因为getSongOrder是从1开始显示, 所以当做数组下标需要减一
+      const nomalizedSongIndex = this.getSongOrder(listIndex, index) - 1
+      const nomalizedSong = this.normalizedSongs[nomalizedSongIndex]
+      // 整合歌曲信息，并开始播放
+      this.startSong(nomalizedSong)
+      // 将全部歌曲对象加入到播放列表中
+      this.setPlaylist(this.normalizedSongs)
+    },
+    ...mapMutations(['setPlaylist']),
+    ...mapActions(['startSong'])
   },
   computed: {
     // 将获取的歌曲对象，分别切成两个对象
@@ -66,6 +79,10 @@ export default {
         this.list.slice(0, this.chunkLimit),
         this.list.slice(this.chunkLimit, this.list.length)
       ]
+    },
+    // 将获取的歌曲对象整合为一个对象
+    normalizedSongs () {
+      return this.list.map(song => this.nomalizeSong(song))
     }
   },
   components: { SongCard }

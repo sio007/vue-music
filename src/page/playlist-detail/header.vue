@@ -40,6 +40,8 @@
 </template>
 
 <script>
+import { mapActions, mapMutations } from '@/store/helper/music'
+
 export default {
   // 组件属性
   props: {
@@ -57,8 +59,11 @@ export default {
   methods: {
     // 播放全部歌曲
     playAll () {
-      console.log(this.playlist)
-    }
+      this.startSong(this.songs[0])
+      this.setPlaylist(this.songs)
+    },
+    ...mapMutations(['setPlaylist']),
+    ...mapActions(['startSong'])
   },
   computed: {
     // 处理歌单详情中的标签数据

@@ -8,7 +8,7 @@
 <script>
 // 导入element中table组件
 import ElTable from 'element-ui/lib/table'
-import { mapState } from '@/store/helper/music'
+import { mapMutations, mapActions, mapState } from '@/store/helper/music'
 import { pad, goMvWithCheck } from '@/utils'
 
 export default {
@@ -185,7 +185,9 @@ export default {
         retCls.push('song-active')
       }
       return retCls.join(' ')
-    }
+    },
+    ...mapMutations(['setPlaylist']),
+    ...mapActions(['startSong'])
   },
   computed: {
     // 渲染table下columns组件
