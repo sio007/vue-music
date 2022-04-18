@@ -25,8 +25,8 @@
                 <div class="value">{{currentSong.artistsText}}</div>
               </div>
             </div>
-            <empty v-if="nolyric">还没有歌词哦~</empty>
-            <Scroller :data="lyric" :options="{disableTouch:true}" @init="onInitScroller" class="lyric-wrap" ref="scroller" v-else>
+            <Empty v-if="nolyric">还没有歌词哦~</Empty>
+            <Scroller v-else :data="lyric" :options="{disableTouch:true}" @init="onInitScroller" class="lyric-wrap" ref="scroller">
               <div>
                 <div :class="getActiveCls(index)" :key="index" class="lyric-item" ref="lyric" v-for="(l,index) in lyricWithTranslation">
                   <p :key="contentIndex" class="lyric-text" v-for="(content, contentIndex) in l.contents">{{content}}</p>
@@ -108,8 +108,7 @@ export default {
       // 相似歌曲
       simiSongs: [],
       // 判断没有歌词的变量
-      nolyric: false,
-      geci: []
+      nolyric: false
     }
   },
   methods: {
@@ -123,18 +122,17 @@ export default {
       // 向获取歌词的接口发送请求
       const result = await getLyric(this.currentSong.id)
       // 判断返回的数据中有没有歌词
-      this.nolyric = !isDef(result.lrc) || !result.lrc.lyric
+      if (result.lrc.version === 1) {
+        this.nolyric = true
+      }
+      // this.nolyric = !isDef(result.lrc) || !result.lrc.lyric
       // 如果有歌词
-      if (!this.nolyric) {
+      if (result.lrc.version !== 1) {
         // 通过lyricParser函数处理，获取原歌词和翻译后的歌词
         const { lyric, tlyric } = lyricParser(result)
         this.lyric = lyric
         this.tlyric = tlyric
       }
-      this.geci = result
-      console.log(this.geci)
-      console.log(this.lyric)
-      console.log(this.tlyric)
     },
     // 加载相似列表数据
     async updateSimi () {
@@ -168,8 +166,6 @@ export default {
           mvId: mvid
         })
       })
-      console.log(this.simiPlaylists)
-      console.log(this.simiSongs)
     },
     // 得到当前播放器的显示变量
     getPlayerShowCls () {
@@ -340,8 +336,10 @@ export default {
       // 如果当前播放歌曲更新了id，则说明是另一首歌曲
       // 如果歌曲详情显示状态切歌 需要拉取歌曲相关信息
       if (this.isPlayerShow) {
+        this.nolyric = false
         this.updateSong()
       } else {
+        this.nolyric = false
         // 否则只是更新歌词
         this.updateLyric()
       }

@@ -27,3 +27,6 @@ export const UID_KEY = '__uid__'
 
 // 音量
 export const VOLUME_KEY = '__volume__'
+
+// 用户cookie
+export const UID_COOKIE = '__ucookie__'

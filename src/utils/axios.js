@@ -18,7 +18,8 @@ mixinLoading(request.interceptors)
 // 通用的axios实例
 function createBaseInstance () {
   const instance = axios.create({
-    baseURL: BASE_URL
+    baseURL: BASE_URL,
+    withCredentials: true
   })
 
   // 响应拦截器

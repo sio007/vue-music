@@ -1,6 +1,7 @@
 <template>
   <div class="menu">
     <!-- 用户信息 -->
+    <User />
     <!-- 菜单栏(包含菜单选项 和 用户登录后的歌单) -->
     <div class="menu-wrap">
       <div :key="index" class="menu-block" v-for="(menu, index) in menusWithPlaylist">
@@ -19,7 +20,11 @@
 <script type="text/ecmascript-6">
 // 从路由文件中引入菜单选项数据
 import { menuRoutes } from '@/router'
-
+import User from '@/components/user'
+import {
+  mapState as mapUserState,
+  mapGetters as mapUserGetters
+} from '@/store/helper/user'
 export default {
   data () {
     return {
@@ -39,8 +44,11 @@ export default {
       return this.isLogin && this.userMenus.length
         ? this.menus.concat(this.userMenus)
         : this.menus
-    }
-  }
+    },
+    ...mapUserState(['userPlaylist']),
+    ...mapUserGetters(['isLogin', 'userMenus'])
+  },
+  components: { User }
 }
 </script>
 
