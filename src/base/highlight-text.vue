@@ -11,7 +11,7 @@ export default {
       const keyWord = this.highlightText.toLowerCase()
       const matchIndex = titleToMatch.indexOf(keyWord)
       const beforeStr = this.text.substr(0, matchIndex)
-      const afterStr = this.text.substr(matchIndex, keyWord.length)
+      const afterStr = this.text.substr(matchIndex + keyWord.length)
       const hitStr = this.text.substr(matchIndex, keyWord.length)
       const titleSpan =
         matchIndex > -1 ? (

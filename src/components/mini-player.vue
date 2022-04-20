@@ -1,6 +1,6 @@
 // 底部播放栏组件
 <template>
-  <div class="mini-player" id="mini-player">
+  <div class="mini-player" id="mini-player" v-show="isMiniPlayerShow">
     <!-- 歌曲内容 -->
     <div class="song">
       <template v-if="hasCurrentSong">
@@ -78,6 +78,7 @@ import { mapState, mapMutations, mapGetters, mapActions } from '@/store/helper/m
 import Storage from 'good-storage'
 import Share from '@/components/share'
 import { VOLUME_KEY, playModeMap, isDef } from '@/utils'
+import { confirm } from '@/base/confirm'
 
 
 // 默认音量大小
@@ -221,6 +222,11 @@ export default {
   watch: {
     // 监听当前播放歌曲
     currentSong (newSong, oldSong) {
+      // 如果当前播放歌曲为会员曲目，将跳过播放下一首
+      if (newSong.fee == 1) {
+        confirm('该歌曲为会员歌曲，请播放其他歌曲')
+        this.next()
+      }
       // 清空了歌曲（如果不存在没有新的id）
       if (!newSong.id) {
         // 将音频暂停
@@ -297,7 +303,7 @@ export default {
       return `${window.location.origin}?shareMusicId=${this.currentSong.id}`
     },
     ...mapState([
-      'currentSong', 'currentTime', 'playing', 'playMode', 'isPlaylistShow', 'isPlaylistPromptShow', 'isPlayerShow'
+      'currentSong', 'currentTime', 'playing', 'playMode', 'isPlaylistShow', 'isPlaylistPromptShow', 'isPlayerShow', 'isMiniPlayerShow'
     ]),
     ...mapGetters([
       'prevSong', 'nextSong'

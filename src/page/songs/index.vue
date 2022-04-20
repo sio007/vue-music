@@ -45,7 +45,8 @@ export default {
           artists,
           duration,
           mvid,
-          album: { picUrl, name: albumName }
+          album: { picUrl, name: albumName },
+          fee
         } = song
         return createSong({
           id,
@@ -54,7 +55,8 @@ export default {
           duration,
           albumName,
           img: picUrl,
-          mvId: mvid
+          mvId: mvid,
+          fee
         })
       })
       console.log(this.songs)

@@ -8,6 +8,10 @@ const Mvs = () => import(/* webpackChunkName: "Mvs" */ '@/page/mvs')
 const PlaylistDetail = () => import('@/page/playlist-detail')
 const Mv = () => import(/* webpackChunkName: "Mv" */ '@/page/mvdetail')
 
+const Search = () => import(/* webpackChunkName: "Search" */ '@/page/search')
+const SearchSongs = () => import(/* webpackChunkName: "Search" */ '@/page/search/songs')
+const SearchPlaylists = () => import(/* webpackChunkName: "Search" */ '@/page/search/playlists')
+const SearchMvs = () => import(/* webpackChunkName: "Search" */ '@/page/search/mvs')
 
 // 内容需要居中的页面
 export const layoutCenterNames = ['discovery', 'playlists', 'songs', 'mvs']
@@ -72,6 +76,33 @@ export default new VueRouter({
       name: 'mv',
       component: Mv,
       props: (route) => ({ id: +route.params.id })
+    },
+    {
+      path: '/search/:keywords',
+      name: 'search',
+      component: Search,
+      props: true,
+      children: [
+        {
+          path: '/',
+          redirect: 'songs'
+        },
+        {
+          path: 'songs',
+          name: 'searchSongs',
+          component: SearchSongs
+        },
+        {
+          path: 'playlists',
+          name: 'searchPlaylists',
+          component: SearchPlaylists
+        },
+        {
+          path: 'mvs',
+          name: 'searchMvs',
+          component: SearchMvs
+        }
+      ]
     },
     ...menuRoutes
   ]

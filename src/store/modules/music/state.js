@@ -22,5 +22,7 @@ export default {
   // 播放历史数据
   playHistory: storage.get(PLAY_HISTORY_KEY, []),
   // 菜单显示状态
-  isMenuShow: true
+  isMenuShow: true,
+  // mini播放器显示状态
+  isMiniPlayerShow: true
 }

@@ -34,6 +34,7 @@
               </div>
             </Scroller>
           </div>
+          <div class="player-bg" :style="{backgroundImage: maskUrl}"></div>
         </div>
         <div class="bottom">
           <div class="left">
@@ -155,7 +156,8 @@ export default {
           artists,
           mvid,
           album: { picUrl },
-          duration
+          duration,
+          fee
         } = song
         return createSong({
           id,
@@ -163,7 +165,8 @@ export default {
           artists,
           duration,
           img: picUrl,
-          mvId: mvid
+          mvId: mvid,
+          fee
         })
       })
     },
@@ -261,6 +264,12 @@ export default {
     ...mapActions(['startSong', 'addToPlaylist'])
   },
   computed: {
+    // 获取当前歌曲封面将封面设置为背景图
+    maskUrl () {
+      return this.currentSong.id && this.currentSong.img
+        ? `url(${this.currentSong.img}?param=300y300)`
+        : 'url()'
+    },
     // 处理当前歌曲播放歌词的索引
     activeLyricIndex () {
       return this.lyricWithTranslation
@@ -530,7 +539,8 @@ $img-outer-d: 300px;
             180deg,
             hsla(0, 0%, 100%, 0) 0,
             hsla(0, 0%, 100%, 0.6) 15%,
-            #fff 25% #fff 75%,
+            #fff 25%,
+            #fff 75%,
             hsla(0, 0%, 100%, 0.6) 85%,
             hsla(0, 0%, 100%, 0)
           );
@@ -550,6 +560,24 @@ $img-outer-d: 300px;
             }
           }
         }
+      }
+
+      .player-bg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: -2;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50%;
+        filter: blur(70px);
+        opacity: 0.7;
+        transition: all 0.8s;
+        transform: scale(1.1);
       }
     }
 

@@ -7,7 +7,7 @@
     <!-- 使用 isRouteMode判断tab选项是否需要跳转链接 -->
     <template v-if="isRouteMode">
       <router-link :active-class="`${ROUTE_ACTIVE_CLS} ${activeItemClass}`" :key="index" :style="getItemStyle(tab, index)" :to="tab.to" class="tab-item" ref="routerLinks" tag="li" v-for="(tab,index) in normalizedTabs">
-        <span class="title">{{title}}</span>
+        <span class="title">{{tab.title}}</span>
       </router-link>
     </template>
     <template v-else>

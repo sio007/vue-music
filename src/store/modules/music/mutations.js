@@ -56,7 +56,12 @@ export default {
   },
 
   // 设置菜单显示状态
-  setisMenuShow(state, show) {
+  setMenuShow(state, show) {
     state.isMenuShow = show
+  },
+
+  // 设置mini播放器显示状态
+  setMiniPlayerShow(state, show) {
+    state.isMiniPlayerShow = show
   }
 }

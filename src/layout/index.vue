@@ -2,7 +2,7 @@
   <div class="layout">
     <LayoutHeader />
     <div class="layout-body">
-      <div class="layout-menu">
+      <div class="layout-menu" v-show="isMenuShow">
         <LayoutMenu />
       </div>
       <div class="content" id="page-content">
@@ -16,6 +16,8 @@
 import LayoutHeader from './header'
 import LayoutMenu from './menu'
 import { layoutCenterNames } from '@/router'
+import { mapState } from '@/store/helper/music'
+
 export default {
   data () {
     return {}
@@ -31,7 +33,9 @@ export default {
       return layoutCenterNames.find(name => name === this.$route.name)
         ? 'router-view-center'
         : ''
-    }
+    },
+    ...mapState(['isMenuShow'])
+
   }
 }
 </script>

@@ -15,10 +15,12 @@ import { getPageOffset, scrollInto } from '@/utils'
 export default {
   // 组件属性
   props: {
+    // 获取数据的接口
     getData: {
       type: Function,
       required: true
     },
+    // 发起请求获取数据时携带的参数
     getDataParams: {
       type: Object,
       default: () => ({})

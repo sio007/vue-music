@@ -47,7 +47,8 @@ export default {
           mvid,
           artists,
           album: { blurPicUrl },
-          duration
+          duration,
+          fee
         }
       } = song
       return createSong({
@@ -56,7 +57,8 @@ export default {
         img: blurPicUrl,
         artists,
         duration,
-        mvId: mvid
+        mvId: mvid,
+        fee
       })
     },
     // 点击歌曲后

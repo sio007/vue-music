@@ -78,8 +78,9 @@ export default {
       const trackIds = playlist.trackIds.map(({ id }) => id)
       // 通过获取的id，获取每条歌曲详细信息（最多显示500条）
       const songDetails = await getSongDetail(trackIds.slice(0, MAX))
+      console.log(songDetails.songs)
       // 将每一条歌曲的详细数据重新创建到一个数组中
-      const songs = songDetails.songs.map(({ id, name, al, ar, mv, dt }) =>
+      const songs = songDetails.songs.map(({ id, name, al, ar, mv, dt, fee }) =>
         createSong({
           id,
           name,
@@ -87,11 +88,13 @@ export default {
           duration: dt,
           mvId: mv,
           albumName: al.name,
-          img: al.picUrl
+          img: al.picUrl,
+          fee
         })
       )
       // 将重新创建的数组赋值
       this.songs = songs
+      console.log(this.songs)
     },
     // 获取评论数量事件，从评论子组件中传递参数
     onCommentsUpdate ({ total }) {

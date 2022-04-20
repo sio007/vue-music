@@ -51,9 +51,12 @@
 import { getMvDetail, getMvUrl, getArtists, getSimiMv } from '@/api'
 import Comments from '@/components/comments'
 import MvCard from '@/components/mv-card'
-// import { hideMenuMixin } from '@/utils'
+import { mapMutations } from '@/store/helper/music'
+import { hideMenuMixin, hideMiniPlayerMixin } from '@/utils'
 
 export default {
+  // 导入并直接调用隐藏菜单栏的函数
+  mixins: [hideMenuMixin, hideMiniPlayerMixin],
   // 组件属性，获取链接地址中携带的id参数
   props: {
     id: {
@@ -111,13 +114,15 @@ export default {
         const player = this.$refs.video.player
         player.on('play', () => {
           // 停止播放歌曲
+          this.setPlayingState(false)
         })
       })
     },
     // 点击相似mv时，携带id参数跳转链接
     goMV (id) {
       this.$router.push(`/mv/${id}`)
-    }
+    },
+    ...mapMutations(['setPlayingState'])
   },
   watch: {
     // 监听id变化，调用init函数
