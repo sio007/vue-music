@@ -5,8 +5,9 @@ const Discovery = () => import(/* webpackChunkName: "Discovery" */ '@/page/disco
 const Playlists = () => import(/* webpackChunkName: "Playlists" */ '@/page/playlists')
 const Songs = () => import(/* webpackChunkName: "Songs" */ '@/page/songs')
 const Mvs = () => import(/* webpackChunkName: "Mvs" */ '@/page/mvs')
-const PlaylistDetail = () => import('@/page/playlist-detail')
+const PlaylistDetail = () => import(/* webpackChunkName: "PlaylistDetail" */'@/page/playlist-detail')
 const Mv = () => import(/* webpackChunkName: "Mv" */ '@/page/mvdetail')
+const Ranks = () => import(/* webpackChunkName: "Rans" */'@/page/ranks')
 
 const Search = () => import(/* webpackChunkName: "Search" */ '@/page/search')
 const SearchSongs = () => import(/* webpackChunkName: "Search" */ '@/page/search/songs')
@@ -14,7 +15,7 @@ const SearchPlaylists = () => import(/* webpackChunkName: "Search" */ '@/page/se
 const SearchMvs = () => import(/* webpackChunkName: "Search" */ '@/page/search/mvs')
 
 // 内容需要居中的页面
-export const layoutCenterNames = ['discovery', 'playlists', 'songs', 'mvs']
+export const layoutCenterNames = ['discovery', 'playlists', 'songs', 'mvs', 'ranks']
 
 // 定义layout中菜单选项的数据
 export const menuRoutes = [
@@ -52,6 +53,15 @@ export const menuRoutes = [
     meta: {
       title: '最新MV',
       icon: 'mv'
+    }
+  },
+  {
+    path: '/ranks',
+    name: 'ranks',
+    component: Ranks,
+    meta: {
+      title: '排行榜',
+      icon: 'rank'
     }
   }
 ]

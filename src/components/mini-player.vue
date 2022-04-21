@@ -225,6 +225,7 @@ export default {
       // 如果当前播放歌曲为会员曲目，将跳过播放下一首
       if (newSong.fee == 1) {
         confirm('该歌曲为会员歌曲，请播放其他歌曲')
+        this.pause()
         this.next()
       }
       // 清空了歌曲（如果不存在没有新的id）

@@ -6,7 +6,6 @@ import { mapActions, mapMutations } from '@/store/helper/music'
 
 export default {
   created () {
-    console.log(484894)
     this.$watch('$route.query.shareMusicId', async shareMusicId => {
       console.log(shareMusicId)
       if (isDef(shareMusicId)) {

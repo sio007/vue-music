@@ -94,7 +94,7 @@ export default {
           scopedSlots: {
             default: scope => {
               const {
-                row: { mvId }
+                row: { mvId, fee }
               } = scope
               // 歌名旁边还有mv按钮，一旦点击了按钮则触发事件，跳转到mv链接
               const onGoMv = async e => {
@@ -112,6 +112,16 @@ export default {
                         class="mv-icon"
                         onClick={onGoMv}
                         type="mv"
+                        color="theme"
+                        size={18}
+                      />
+                    ) : null}
+
+                    {fee == 1 ? (
+                      <Icon
+                        class="mv-icon"
+                        onClick={onGoMv}
+                        type="vip"
                         color="theme"
                         size={18}
                       />
