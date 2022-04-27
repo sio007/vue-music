@@ -574,7 +574,7 @@ $img-outer-d: 300px;
         background-repeat: no-repeat;
         background-size: cover;
         background-position: 50%;
-        filter: blur(70px);
+        filter: blur(40px);
         opacity: 0.7;
         transition: all 0.8s;
         transform: scale(1.1);

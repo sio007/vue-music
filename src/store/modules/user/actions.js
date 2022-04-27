@@ -1,5 +1,5 @@
 import storage from 'good-storage'
-import { UID_KEY, UID_COOKIE, notify, isDef } from '@/utils'
+import { UID_KEY, UID_COOKIE, notify, isDef, clearAllCookie } from '@/utils'
 // 导入获取用户信息和用户歌单信息的请求方法
 import { getUserDetail, getUserPlaylist } from '@/api'
 
@@ -41,6 +41,6 @@ export default {
     commit('setUserPlaylist', [])
     // 将保存中storage中的uid和cookie都置空
     storage.set(UID_KEY, null)
-    storage.set(UID_COOKIE, null)
+    clearAllCookie()
   }
 }

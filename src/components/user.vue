@@ -32,7 +32,7 @@
 
 
 import Storage from 'good-storage'
-import { UID_KEY, UID_COOKIE, isDef } from '@/utils'
+import { UID_KEY, isDef, addCookie } from '@/utils'
 import { confirm } from '@/base/confirm'
 import { checkStatus, loginStatus, getQRKey, getQR } from '@/api'
 import {
@@ -108,8 +108,6 @@ export default {
         }
         // 如果二维码key状态是已经授权了
         if (statusRes.code === 803) {
-          // 将二维码key状态返回的cookie存储到storage
-          Storage.set(UID_COOKIE, statusRes.cookie)
           // 发送请求获取用户登录状态
           const LoginStatus = await this.getLoginStatus()
           // 获取用户登录状态中返回的uid作为参数调用加载用户详细数据和用户歌单数据
@@ -118,6 +116,8 @@ export default {
           // this.onCloseModal()
           // 弹出成功消息窗
           confirm('登录成功')
+          // 将二维码key状态返回的MUSIC_U键存储到cookie
+          addCookie('MUSIC_U', statusRes.cookie)
         }
       }, 5000)
     },
